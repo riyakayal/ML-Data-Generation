@@ -1,5 +1,6 @@
 # H-bonded Amino acid dimers with RDKit
 Let's construct hydrogen-bond preorganized amino acid dimers in a physically meaningful linear geometry.
+We will use RDKit for molecular construction + NumPy for geometry manipulation.
 
 We will:
 * Generate all 20 × 20 natural amino acid dimers
@@ -11,4 +12,13 @@ We will:
 * CPU-only
 * Fully deterministic
 
-We will use RDKit for molecular construction + NumPy for geometry manipulation.
+**Physical Target Geometry**
+
+* Typical hydrogen bond: H···O distance ≈ 1.8–2.2 Å
+* N–H···O angle ≈ 160–180°
+
+We’ll enforce:
+* H···O = 2.0 Å
+* Linear N–H···O alignment
+
+
