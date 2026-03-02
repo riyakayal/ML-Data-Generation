@@ -43,7 +43,7 @@ iv) Saves XYZ
 * Best steric separation
 
 *Next we add CPU parallelisation on top of it to boost up performance and make it production ready.*
-**==>  Script: aa_dimer_1_pal.py**
+**==>  Script: aa_dimer_1_parallel.py**
 
 
 
