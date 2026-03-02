@@ -69,4 +69,11 @@ def get_oligomers(n_oligomers, monomer_name, xyzfile):
         print("\n")
         
 # run         
-get_oligomers(10, "glycine", "glycine.xyz")
+if __name__ == "__main__":
+    print("Enter name of the .xyz file without the .xyz suffix:")
+    name = input()
+    print("Enter oligomer length as natural number:")
+    chain_length = int(input())
+    print("\n")
+    get_oligomers(chain_length, name, name + ".xyz")
+
