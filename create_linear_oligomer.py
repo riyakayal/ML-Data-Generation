@@ -14,7 +14,7 @@
 # get this O's coordinate by drawing it about 2.5 A away from N of first glycine in Avogadro.
 
 mol2_O = "O       -0.7049115307     -1.1265436717      1.8039367523"
-mol2_O = m2O.split()
+mol2_O = mol2_O.split()
 
 # Now we know O's (from C=O) coordinates in both glycines.
 # Translate first glycine by the distance between these two Os.
@@ -58,7 +58,7 @@ def get_oligomers(n_oligomers, monomer_name, xyzfile):
     for times in range(1, n_oligomers):
         print("-"*50,"\n Coordinates of", dict1.get(1 + times, "%2dth"%(1 + times)), monomer_name)
         print("-"*50)
-        for atom in m1:
+        for atom in mol1:
             element, x, y, z = atom.split()
             [x,y,z] = list(map(float, [x,y,z]))
             #translate 1st monomer's coordinates by (i -1) * d_j where i indicates i-th oligomer, d_j is displacement with j = {x,y,z}
