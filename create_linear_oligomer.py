@@ -2,21 +2,25 @@
 # Created: 10/10/2025
 
 # Generate an oligomer by adding n number of monomers on a stright line.
-# NOTE: This is not a blackbox program. Find your reference atom (ATOM1) and the distance 
-# of it from another reference atom (ATOM2) in the monomer.
-# We take glycine as an example, add n number of glycines to it.
-# Find the O (ATOM1) in the C=O of COOH, here it is the 4th one (m = m1[3]). This in 2nd glycine 
-# should be close to N (ATOM2) of first glycine. 
+# NOTE: This is not a blackbox program. Find your reference atom (ATOM1-1) 
+# in first molecule (mol1) and the distance 
+# of it from the same reference atom (ATOM1-2) in the second molecule (mol2).
+# We take glycine as an example, to add n number of glycines to it.
+# We place it as *HOOC-CH2-NH2 HOOC-CH2-NH2*, keeping the NH2 group of the first molecule 
+# in a suitable distance to make H bond formation possible between the carboxylic O atom
+# of the second molecule with the H from the first molecule's NH2 group.
+# Find the O (ATOM1-1) in the C=O of COOH, here it is the 4th one (m = mol1[3]). 
+# This O atom in secnd glycine should be close to N (ATOM2-1) of first glycine. 
 # get this O's coordinate by drawing it about 2.5 A away from N of first glycine in Avogadro.
 
-m2O = "O       -0.7049115307     -1.1265436717      1.8039367523"
-m2O = m2O.split()
+mol2_O = "O       -0.7049115307     -1.1265436717      1.8039367523"
+mol2_O = m2O.split()
 
-#Now we know O's (from C=O) coordinates in both glycines.
-#Translate first glycine by the distance between these two Os.
-#Repeat the process to get the oligomer.
+# Now we know O's (from C=O) coordinates in both glycines.
+# Translate first glycine by the distance between these two Os.
+# Repeat the process to get the oligomer of desired size.
 '''
-m1 = ["N    1.3476865998     -1.6766316554      1.1486751945",             
+mol1 = ["N    1.3476865998     -1.6766316554      1.1486751945",             
 "C        2.4805893087     -0.7619959339      1.1783488893",                 
 "C        3.6383064077     -1.4243062858      0.4375805008",                 
 "O        4.7865995315     -1.0749215957      0.5402265471",                 
@@ -29,24 +33,24 @@ m1 = ["N    1.3476865998     -1.6766316554      1.1486751945",
 '''
 
 # read the coordinate file
-# get m1 in the above format
+# get mol1 in the above format
 def get_translation_vector(xyzfile):
-    m1 = []
+    molecule1 = []
     f = open(xyzfile, 'r') 
     for line in f.readlines()[2:]:
         line = line.strip() 
-        m1.append(line)
-    return m1
+        molecule1.append(line)
+    return molecule1
 
 # create oligomer
 def get_oligomers(n_oligomers, monomer_name, xyzfile):
     
     print("="*50, "\n Preparing oligomer coordinates for %s..." % monomer_name)
     print("="*50, "\n")
-    m1 = get_translation_vector(xyzfile)
+    mol1 = get_translation_vector(xyzfile)
     # We choose the first O atom as the reference atom (ATOM1)
-    m = m1[3].split()
-    mx, my, mz = float(m2O[1]), float(m2O[2]), float(m2O[3])
+    m = mol1[3].split()
+    mx, my, mz = float(mol2_O[1]), float(mol2_O[2]), float(mol2_O[3])
     # translation vectors along x, y & z axes
     d_x, d_y, d_z = float(m[1]) - mx, float(m[2]) - my, float(m[3]) - mz; #print(d_x)
     dict1 = {2: "2nd", 3: "3rd"}
