@@ -8,7 +8,7 @@ We can do it:
 * using RDKit and pubchempy\
 **scripts:** \
 i) no CPU parallelisation: serial.py, serial_with_counter.py\
-ii) CPU parallelization enabled: parallel.py
+ii) CPU parallelisation enabled: parallel.py
 
 * looking it up if it exists in the PubChem records.\
   Here, **smiles --> InChIKey --> PubChem lookup** is done which is more reliable than the above procedure.\
