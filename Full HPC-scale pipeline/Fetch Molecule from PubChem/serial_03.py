@@ -114,6 +114,13 @@ with gzip.open(INPUT_SDF, "rb") as f:
 df = pd.DataFrame(collected)
 df.to_csv(OUTPUT_FILE, index=False)
 
+# ===========================
+# Save second CSV: CID + SMILES
+# ===========================
+CID_SMILES_FILE = "organic_molecules_cid_smiles.csv"
+df_cid_smiles = df[["CID", "Canonical_SMILES"]]
+df_cid_smiles.to_csv(CID_SMILES_FILE, index=False)
+
 # Save log
 with open(LOG_FILE, "w") as logf:
     logf.write(f"Total failures/skipped entries: {len(failures)}\n\n")
@@ -128,7 +135,7 @@ elapsed = end_time - start_time
 repeated_formulas = {f: c for f, c in formula_counter.items() if c > 1}
 
 # Prepare aligned summary
-label_width = 30
+label_width = 35  # wider for longer file names
 def fmt(label, value):
     return f"    {label:<{label_width}}: {value}"
 
@@ -136,18 +143,23 @@ print("\n" + "="*76)
 print("Summary of Molecule Extraction (Neutral, Single-Fragment, Deduplicated)")
 print("="*76)
 print(fmt("Input SDF file", INPUT_SDF))
-print(fmt("Output CSV file", OUTPUT_FILE))
+print(fmt("Main output CSV file", OUTPUT_FILE))
+print(fmt("CID+SMILES CSV file", CID_SMILES_FILE))
 print(fmt("Log file", LOG_FILE))
 print(fmt("Requested molecules", N))
 print(fmt("Successfully collected", len(collected)))
 print(fmt("Failed/skipped entries", len(failures)))
-print(fmt("Unique molecular formule", len(formula_counter)))
-print(fmt("Formulae repeated", len(repeated_formulas)))
+print(fmt("Unique molecular formulas collected", len(formula_counter)))
+print(fmt("Formulas repeated more than once", len(repeated_formulas)))
 
 if repeated_formulas:
-    print(fmt("Most common repeated formulae", ""))
+    print(fmt("Most common repeated formulas", ""))
     for formula, count in sorted(repeated_formulas.items(), key=lambda x: -x[1])[:10]:
         print(fmt(f"    {formula}", f"{count} times"))
 
 print(fmt("Elapsed time (s)", f"{elapsed:.2f}"))
 print("="*76 + "\n")
+
+
+
+
