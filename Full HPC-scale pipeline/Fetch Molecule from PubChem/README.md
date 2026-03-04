@@ -19,6 +19,10 @@ Download an SDF file, e.g.
 ```
 wget "https://ftp.ncbi.nlm.nih.gov/pubchem/Compound/CURRENT-Full/SDF/Compound_048000001_048500000.sdf.gz"
 ```
+### To run
+```
+python scriptname.py
+```
 We have clean, stable, HPC-safe script that:
 * Uses PubChem FTP SDF dump
 * Filters:\
