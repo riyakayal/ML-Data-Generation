@@ -327,11 +327,18 @@ def main():
 
     csv_file.close()
 
-    print("\nGeneration finished")
-    print("Peptides generated:",count)
-    print("XYZ files folder: xyz_files/")
-    print("CSV dataset: peptides.csv")
-    print("CPU cores used:",mp.cpu_count())
+    print("\n====================================")
+    print("    Peptide Generation Summary")
+    print("======================================")
+    print("Max atoms allowed :", max_atoms)
+    print("Maximum possible  :", max_possible)
+    print("Requested peptides:", sys.argv[2])
+    print("Generated peptides:", count)
+    print("CPU cores used    :", mp.cpu_count())
+    print("XYZ folder        : xyz_files/")
+    print("CSV dataset       : peptides.csv")
+    print("======================================")
+
 
 
 ########################################
