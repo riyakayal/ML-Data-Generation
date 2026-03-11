@@ -1,7 +1,7 @@
 # Production level CPU-parallelised chemically correct polypeptides generator from scratch
 
 ##### scripts: gp_parallel.py, gp_parallel_hpc.py
-### gp_parallel.py does
+* #### gp_parallel.py does
 
 ✔ Correct peptide chemistry using MolFromSequence from RDKit\
 ✔ CPU parallel generation\
@@ -15,9 +15,9 @@
 ✔ Ramachandran φ/ψ validation\
 ✔ XYZ file export\
 ✔ CSV dataset output\
-✔ Full run summary\
+✔ Full run summary
 
-#### Run Example
+* #### Run Example
 Both scripts run the same way.
 ```
 
@@ -26,18 +26,18 @@ python gp_parallel.py m n
 where m = max atom no. \
 n = no. of peptides requested
 
-#### Output (for m = 80, n = 200)
+* #### Output (for m = 80, n = 200)
 ```
 Requested peptides: 200
 Maximum possible under 80 atoms: 174
 Capping requested peptides.
 ```
-#### Files created
+* #### Files created
 ```
 peptides.csv
 xyz_files/
 ```
-### peptides.csv example
+* #### peptides.csv example
 ```
 peptide_id,composition
 pp_1,ala-gly
@@ -45,9 +45,9 @@ pp_2,gly-ser
 pp_3,val-ala-leu
 ```
 
-### Full Pipeline Flow
+* ### Full Pipeline Flow
 Sequence sampling\
-      ↓\
+            ↓\
 RDKit peptide builder\
       ↓\
 ETKDGv3 conformer generation\
@@ -66,9 +66,9 @@ Atom count filtering\
       ↓\
 Unique composition enforcement\
       ↓\
-XYZ + CSV export\
+XYZ + CSV export
 
-### Improvements: gp_parallel_hpc.py
+* ### Improvements: gp_parallel_hpc.py
 This is the HPC-grade peptide generation pipeline.
 This version is designed for large dataset generation (10⁵–10⁷ peptides) and fixes the scalability limits of the previous script.
 
@@ -82,7 +82,7 @@ Key improvements over the previous version:
 ✔ Trans peptide bond enforcement\
 ✔ High-throughput generation suitable for ML datasets\
 
-#### Why This Version Is Much Faster
+* #### Why This Version Is Much Faster
 | Feature	|Old Script	|HPC Script|
 |-------|------|-----|
 | Composition uniqueness|	multiprocessing Manager	|lock-free set|
@@ -91,7 +91,7 @@ Key improvements over the previous version:
 |Parallelism	|heavy IPC	|lightweight workers|
 |Dataset size|	~10³	|10⁶+ peptides|
 
-#### Typical Throughput (CPU)
+* #### Typical Throughput (CPU)
 On a 16-core workstation:
 ```
 ~1200 peptides/min
