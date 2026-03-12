@@ -107,7 +107,7 @@ if ((analyse_mp2_result));then
     # ./grep_mp2.sh -a TZVP &
     # wait
     # ./add_AA_seq.sh mp2_TZVP.csv peptides.csv &
-    wait
+    # wait
 
     ## 12. grep MP2 data from ORCA output files for def2-QZVP
     #./grep_mp2.sh -a QZVP &
