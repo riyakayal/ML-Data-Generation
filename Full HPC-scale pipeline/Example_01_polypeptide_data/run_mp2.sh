@@ -7,7 +7,7 @@ let run_opt=1,analyse_opt_result=0,run_dz=0
 let run_tz=0,run_qz=0,analyse_mp2_result=0
 
 #==============================================================================
-#  I. SMILES --> XYZ --> DFT/semi-empirical optimisation (ORCA)+ FREQ 
+#  I. SMILES/Sequence --> XYZ --> DFT/semi-empirical optimisation (ORCA)+ FREQ 
 #==============================================================================
 if ((run_opt)); then
     if [ ! -d "output" ]; then
