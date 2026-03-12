@@ -1,4 +1,4 @@
-# Example 01: Fulll HPC-scale pipelene for Thermochmistry and MP2 Energies for polypeptides 
+# Example 01: Full HPC-scale pipelene for Thermochmistry and MP2 Energies for polypeptides 
 
 To run,
 ```
@@ -9,3 +9,5 @@ To run,
 #### 2. Run with setting analyse_opt_result=1 and all other flags at 0 --> Generate Thermochemistry data
 #### 3. Run with setting run_dz=1 and all other flags at 0 --> Run mp2 input files
 #### 4. Run with setting analyse_mp2_result=1 and all other flags at 0 --> Generate MP2 data
+
+The results will be in the **output** folder.
