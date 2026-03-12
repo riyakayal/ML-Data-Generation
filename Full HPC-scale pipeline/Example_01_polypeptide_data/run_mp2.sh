@@ -3,8 +3,8 @@
 # Author: Riya Kayal
 # Created: 10/03/2025
 
-let run_opt=0,analyse_opt_result=0,run_dz=0
-let run_tz=0,run_qz=0,analyse_mp2_result=1
+let run_opt=1,analyse_opt_result=0,run_dz=0
+let run_tz=0,run_qz=0,analyse_mp2_result=0
 
 #==============================================================================
 #  I. SMILES --> XYZ --> DFT/semi-empirical optimisation (ORCA)+ FREQ 
@@ -21,7 +21,6 @@ if ((run_opt)); then
 
     cp ../scripts/create_orca_inputs.py .
     ## 3. create ORCA input files for optimisation + freq calculation
-    ## This script can  efficiently handle charge and multiplicity determination 
     python create_orca_inputs.py &
     wait
 
@@ -30,7 +29,7 @@ if ((run_opt)); then
     ./submit_opt_jobs.sh &
     wait
 
-    rm -f *py 
+    rm -f *py *sh
 
     ## wait till all optimisation jobs are finished. Adjust the time
     ## of sleep as needed.
@@ -57,7 +56,7 @@ if ((analyse_opt_result));then
     ./add_AA_seq.sh data_thermochemistry.csv peptides.csv &
     wait
 
-    rm -f *py
+    rm -f *py *sh
     cd ../
 fi
 #exit()
@@ -115,4 +114,5 @@ if ((analyse_mp2_result));then
     #wait
     #./add_AA_seq.sh mp2_QZVP.csv peptides.csv &
     # wait
+	rm -f *sh
 fi
