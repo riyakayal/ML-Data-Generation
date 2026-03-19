@@ -1,9 +1,9 @@
 # Automatic stream-lined HPC-ready production level scripts to generate large molecular data
 
 #### NOTE: 
-Parallel version not possible due to limitation in RDKit structure. RDKit molecules are not fully picklable —
+Parallel version is not possible due to limitation in RDKit structure. RDKit molecules are not fully picklable —
 when we submit an rdkit.Chem.Mol to a ProcessPoolExecutor, Python pickles it to send to another process. 
-Serial streaming is already fast and memory-efficient. We can even add batching + deduplication, a
+Serial streaming is already fast and memory-efficient. We can even add batching + deduplication, 
 and it scales well to 20k–100k molecules on HPC.
 
 **Requirements**
