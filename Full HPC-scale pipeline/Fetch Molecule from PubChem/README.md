@@ -3,14 +3,14 @@
 #### NOTE: 
 Parallel version is not possible due to limitation in RDKit structure. RDKit molecules are not fully picklable —
 when we submit an rdkit.Chem.Mol to a ProcessPoolExecutor, Python pickles it to send to another process. 
-Serial streaming is already fast and memory-efficient. We can even add batching + deduplication, 
+Serial streaming is already fast and memory-efficient. One may even add batching + deduplication, 
 and it scales well to 20k–100k molecules on HPC.
 
 **Requirements**
 ```
 pip install rdkit-pypi pandas
 ```
-We will use the PubChem database to fetch molecules. 
+Use PubChem database to fetch molecules. 
 Navigate to 
 ```
 https://ftp.ncbi.nlm.nih.gov/pubchem/Compound/CURRENT-Full/SDF
